@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - NC Tamil Christian Fellowship</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Announcement Banner -->
+    <div class="announcement-banner" id="announcementBanner">
+        <div class="banner-container">
+            <p class="banner-text">
+                Join us 1st and 3rd week Saturdays at 5:30 AM EST In Person!
+            </p>
+            <button class="banner-close" id="bannerClose" aria-label="Close banner">×</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">NC TAMIL CHRISTIAN FELLOWSHIP</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item dropdown">
+                    <a href="about.html" class="nav-link">About <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html#who-we-are">Who We are</a></li>
+                        <li><a href="about.html#vision">Vision</a></li>
+                        <li><a href="about.html#mission">Mission</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="index.html#grow" class="nav-link">Grow <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#blogs">Blogs</a></li>
+                        <li><a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">Word Of God</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#pray" class="nav-link">Pray</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="index.html#events" class="nav-link">Events <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#regular-meeting">Regular Meeting</a></li>
+                        <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Special Events</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="index.html#next-gen" class="nav-link">Next Gen <span class="dropdown-arrow">▼</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#kids">Kids</a></li>
+                        <li><a href="index.html#youth">Youth</a></li>
+                        <li><a href="index.html#young-adult">Young Adult</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-cta">
+                    <a href="#bulletin" class="nav-link cta-link">BULLETIN</a>
+                </li>
+                <li class="nav-item nav-cta">
+                    <a href="#give" class="nav-link cta-link">GIVE</a>
+                </li>
+                <li class="nav-item nav-cta">
+                    <a href="#watch" class="nav-link cta-link">WATCH</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Page Content -->
+    <section class="contact-page" id="contact-us">
+        <div class="container">
+            <div class="contact-form-container">
+                <h1 class="contact-page-title">Contact Us</h1>
+                <p class="contact-intro">We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject...</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="prayer">Prayer Request</option>
+                            <option value="visit">Plan a Visit</option>
+                            <option value="ministry">Ministry Information</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="newsletter" value="yes">
+                            <span>I would like to receive updates and newsletters</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
+
+                <div class="contact-info">
+                    <h2>Other Ways to Reach Us</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <h3>Email</h3>
+                            <p><a href="mailto:info@nctamilfellowship.org">info@nctamilfellowship.org</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Phone</h3>
+                            <p><a href="tel:+19197813249">(919) 781-3249</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3>Meeting Times</h3>
+                            <p>1st and 3rd week Saturdays at 5:30 AM EST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Ministries</h4>
+                    <ul>
+                        <li><a href="index.html#connect">Connect</a></li>
+                        <li><a href="index.html#kids">Kids</a></li>
+                        <li><a href="index.html#youth">Youth</a></li>
+                        <li><a href="index.html#young-adult">Young Adults</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#give">Give</a></li>
+                        <li><a href="#serve">Serve</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#sermon-archives">Sermon Archives</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 NC Tamil Christian Fellowship. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send this to a server
+            // For now, we'll just show a success message
+            alert('Thank you for contacting us! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
+
