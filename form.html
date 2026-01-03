@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Our Fellowship - NC Tamil Christian Fellowship</title>
+    <title>Form - NC Tamil Christian Fellowship</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,74 +79,70 @@
         </div>
     </nav>
 
-    <!-- About Page Content -->
-    <section class="about-page">
-        <div class="container">
-            <!-- About Our Fellowship Section -->
-            <div class="about-section">
-                <h1 class="page-title">About Our Fellowship</h1>
-                <p class="about-intro">
-                    God is using United Body Of Christ to reach people with the Love of Christ and impact change in our community. United Body Of Christ is a place where you can grow in the knowledge of Christ, experience inspiring worship, and enjoy genuine fellowship. We welcome you to come and worship with us. We have a wonderful Sunday School program and a vibrant youth fellowship. We look forward for the opportunity to minister to you.
-                </p>
-            </div>
-
-            <!-- About Tiles Section -->
-            <div class="about-tiles-section">
-                <!-- Who We Are Tile -->
-                <div id="who-we-are" class="about-tile">
-                    <h2 class="tile-title">Who We Are?</h2>
-                    <p class="tile-description">
-                        The United Body Of Christ is a warm, welcoming, and friendly community, firmly rooted in the Word of God. We are a family church at heart with individuals in mind. UBOC is committed to proclaiming the gospel of Jesus Christ. We offer a place to connect with other believers in fellowship and to grow deeper in knowledge of the Bible, mature Spiritually, and become equipped to disciple.
-                    </p>
-                </div>
-
-                <!-- Our Mission Tile -->
-                <div id="mission" class="about-tile">
-                    <h2 class="tile-title">Our Mission</h2>
-                    <div class="tile-content">
-                        <h3 class="sub-heading">Love God:</h3>
-                        <p class="tile-text">
-                            We commit to help and support the body of Christ be plugged in under the headship of Jesus Christ and receive the life giving resurrection power of God through the Holy Spirit
-                        </p>
-                        <p class="scripture-reference">
-                            John 14:15,21,23,24 - 21<br>
-                            Galatians 5:22-23
-                        </p>
-                        
-                        <h3 class="sub-heading">Love One Another:</h3>
-                        <p class="tile-text">
-                            We commit to serve & enable brothers and sisters in Jesus Christ to be the ambassadors, sons and daughters, kings and queens, prophets, miracle workers, encouragers, cheerful givers, healers and teachers of God so as to live out the gospel of peace that Jesus has entrusted us
-                        </p>
-                        <p class="scripture-reference">
-                            Matthew 28:18 - 20
-                        </p>
+    <!-- Form Page Content -->
+    <section class="form-page">
+        <div class="form-container">
+            <div class="form-wrapper">
+                <h1 class="form-page-title">Form Submission</h1>
+                <p class="form-intro">Please fill out the form below to submit your information.</p>
+                
+                <form class="church-form" id="churchForm">
+                    <div class="form-group">
+                        <label for="formFirstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="formFirstName" name="firstName" required>
                     </div>
-                </div>
 
-                <!-- Our Vision Tile -->
-                <div id="vision" class="about-tile">
-                    <h2 class="tile-title">Our Vision</h2>
-                    <p class="tile-description">
-                        Awake, Unite, Revive, Resurrect in Jesus's Name through the resurrection power of God by the indwelling & overflowing presence of the Holy Spirit
-                    </p>
-                    
-                    <div class="vision-points">
-                        <div class="vision-point">
-                            <h3 class="vision-title">Awake!</h3>
-                            <p class="vision-description">be "actively waiting"</p>
-                        </div>
-                        
-                        <div class="vision-point">
-                            <h3 class="vision-title">Unite!</h3>
-                            <p class="vision-description">be one body under the Lordship of Jesus Christ</p>
-                        </div>
-                        
-                        <div class="vision-point">
-                            <h3 class="vision-title">Revive! (Resurrect!)</h3>
-                            <p class="vision-description">be the revival in the community of believers & also resurrect the community of non-believers wherever God has placed us</p>
+                    <div class="form-group">
+                        <label for="formLastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="formLastName" name="lastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formEmail">Email <span class="required">*</span></label>
+                        <input type="email" id="formEmail" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="formPhone">Phone Number</label>
+                        <input type="tel" id="formPhone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label>What area interests you the most? <span class="required">*</span></label>
+                        <div class="checkbox-group interest-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="singing">
+                                <span>Singing</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="organizing-crew">
+                                <span>Organizing Crew</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="technology">
+                                <span>Technology</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="interest" value="music">
+                                <span>Music</span>
+                            </label>
                         </div>
                     </div>
-                </div>
+
+                    <div class="form-group">
+                        <label for="formMessage">Message <span class="required">*</span></label>
+                        <textarea id="formMessage" name="message" rows="6" required></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="agree" value="yes" required>
+                            <span>I agree to the terms and conditions <span class="required">*</span></span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
             </div>
         </div>
     </section>
@@ -189,6 +185,21 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Form handling
+        document.getElementById('churchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send this to a server
+            // For now, we'll just show a success message
+            alert('Thank you for your submission! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
 

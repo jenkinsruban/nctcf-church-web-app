@@ -32,54 +32,107 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Mobile Menu Toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a non-dropdown link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Only close if it's not a dropdown parent link
+                if (!link.parentElement.classList.contains('dropdown')) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile Dropdown Toggle
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const dropdownLink = dropdown.querySelector('.nav-link');
+            
+            if (dropdownLink) {
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 968) {
+                        const href = dropdownLink.getAttribute('href');
+                        const isPageLink = href && (href.endsWith('.html') || href.includes('.html#'));
+                        const isArrowClick = e.target.classList.contains('dropdown-arrow') || e.target.closest('.dropdown-arrow');
+                        
+                        // If clicking on a page link (like about.html) and not the arrow, allow navigation
+                        if (isPageLink && !isArrowClick) {
+                            // Close menu and navigate
+                            navMenu.classList.remove('active');
+                            hamburger.classList.remove('active');
+                            // Allow default navigation
+                            return true;
+                        }
+                        
+                        // Otherwise, toggle dropdown
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Close other dropdowns
+                        dropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            }
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    }
 });
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
-
-// Mobile Dropdown Toggle
-const dropdowns = document.querySelectorAll('.dropdown');
-
-dropdowns.forEach(dropdown => {
-    const dropdownLink = dropdown.querySelector('.nav-link');
-    
-    dropdownLink.addEventListener('click', (e) => {
-        if (window.innerWidth <= 968) {
-            e.preventDefault();
-            dropdown.classList.toggle('active');
-        }
-    });
-});
-
-// Smooth Scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// Smooth Scrolling for hash links
+document.querySelectorAll('a[href*="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        if (href !== '#' && href.length > 1) {
-            e.preventDefault();
-            const targetId = href.split('#')[1];
-            const target = document.querySelector('#' + targetId);
-            if (target) {
-                const navbar = document.querySelector('.navbar');
-                const navbarHeight = navbar ? navbar.offsetHeight : 70;
-                const banner = document.getElementById('announcementBanner');
-                const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
-                const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 20;
-                window.scrollTo({
-                    top: Math.max(0, offsetTop),
-                    behavior: 'smooth'
-                });
+        if (href && href.includes('#')) {
+            const hashIndex = href.indexOf('#');
+            const hash = href.substring(hashIndex);
+            const targetId = hash.substring(1);
+            
+            // If it's a cross-page link (contains .html), let browser navigate first
+            if (href.includes('.html') && hashIndex > 0) {
+                // Store hash for after page load
+                sessionStorage.setItem('scrollToHash', targetId);
+                // Allow default navigation
+                return true;
+            }
+            
+            // For same-page hash links, handle smooth scroll
+            if (hash !== '#' && targetId) {
+                e.preventDefault();
+                const target = document.querySelector('#' + targetId);
+                if (target) {
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 70;
+                    const banner = document.getElementById('announcementBanner');
+                    const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
+                    const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
+                    window.scrollTo({
+                        top: Math.max(0, offsetTop),
+                        behavior: 'smooth'
+                    });
+                }
             }
         }
     });
@@ -96,30 +149,17 @@ function scrollToHash() {
                 const navbarHeight = navbar ? navbar.offsetHeight : 70;
                 const banner = document.getElementById('announcementBanner');
                 const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
-                const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 20;
+                const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
                 window.scrollTo({
                     top: Math.max(0, offsetTop),
                     behavior: 'smooth'
                 });
             }
-        }, 300);
+        }, 500);
     }
 }
 
-// Handle cross-page navigation with hash
-document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href.includes('#') && href.includes('.html')) {
-            // Cross-page navigation - let the browser navigate, then scroll
-            const [page, hash] = href.split('#');
-            if (hash) {
-                // Store hash for after page load
-                sessionStorage.setItem('scrollToHash', hash);
-            }
-        }
-    });
-});
+// Handle cross-page navigation with hash (this is now handled in the smooth scrolling section above)
 
 // Run on page load
 document.addEventListener('DOMContentLoaded', () => {
@@ -129,12 +169,17 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.removeItem('scrollToHash');
         window.location.hash = storedHash;
     }
-    scrollToHash();
+    // Delay to ensure page is fully rendered
+    setTimeout(() => {
+        scrollToHash();
+    }, 100);
 });
 
-// Also run after a short delay to ensure everything is loaded
+// Also run after page is fully loaded
 window.addEventListener('load', () => {
-    scrollToHash();
+    setTimeout(() => {
+        scrollToHash();
+    }, 200);
 });
 
 // Navbar Scroll Effect

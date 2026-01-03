@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Our Fellowship - NC Tamil Christian Fellowship</title>
+    <title>Prayer Request - NC Tamil Christian Fellowship</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,74 +79,62 @@
         </div>
     </nav>
 
-    <!-- About Page Content -->
-    <section class="about-page">
-        <div class="container">
-            <!-- About Our Fellowship Section -->
-            <div class="about-section">
-                <h1 class="page-title">About Our Fellowship</h1>
-                <p class="about-intro">
-                    God is using United Body Of Christ to reach people with the Love of Christ and impact change in our community. United Body Of Christ is a place where you can grow in the knowledge of Christ, experience inspiring worship, and enjoy genuine fellowship. We welcome you to come and worship with us. We have a wonderful Sunday School program and a vibrant youth fellowship. We look forward for the opportunity to minister to you.
-                </p>
-            </div>
-
-            <!-- About Tiles Section -->
-            <div class="about-tiles-section">
-                <!-- Who We Are Tile -->
-                <div id="who-we-are" class="about-tile">
-                    <h2 class="tile-title">Who We Are?</h2>
-                    <p class="tile-description">
-                        The United Body Of Christ is a warm, welcoming, and friendly community, firmly rooted in the Word of God. We are a family church at heart with individuals in mind. UBOC is committed to proclaiming the gospel of Jesus Christ. We offer a place to connect with other believers in fellowship and to grow deeper in knowledge of the Bible, mature Spiritually, and become equipped to disciple.
-                    </p>
-                </div>
-
-                <!-- Our Mission Tile -->
-                <div id="mission" class="about-tile">
-                    <h2 class="tile-title">Our Mission</h2>
-                    <div class="tile-content">
-                        <h3 class="sub-heading">Love God:</h3>
-                        <p class="tile-text">
-                            We commit to help and support the body of Christ be plugged in under the headship of Jesus Christ and receive the life giving resurrection power of God through the Holy Spirit
-                        </p>
-                        <p class="scripture-reference">
-                            John 14:15,21,23,24 - 21<br>
-                            Galatians 5:22-23
-                        </p>
-                        
-                        <h3 class="sub-heading">Love One Another:</h3>
-                        <p class="tile-text">
-                            We commit to serve & enable brothers and sisters in Jesus Christ to be the ambassadors, sons and daughters, kings and queens, prophets, miracle workers, encouragers, cheerful givers, healers and teachers of God so as to live out the gospel of peace that Jesus has entrusted us
-                        </p>
-                        <p class="scripture-reference">
-                            Matthew 28:18 - 20
-                        </p>
+    <!-- Prayer Request Form Page -->
+    <section class="form-page">
+        <div class="form-container">
+            <div class="form-wrapper">
+                <h1 class="form-page-title">Prayer Request</h1>
+                <p class="form-intro">We believe in the power of prayer. Share your prayer request with us, and our prayer team will lift you up in prayer.</p>
+                
+                <form class="church-form" id="prayerForm">
+                    <div class="form-group">
+                        <label for="prayerFirstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="prayerFirstName" name="firstName" required>
                     </div>
-                </div>
 
-                <!-- Our Vision Tile -->
-                <div id="vision" class="about-tile">
-                    <h2 class="tile-title">Our Vision</h2>
-                    <p class="tile-description">
-                        Awake, Unite, Revive, Resurrect in Jesus's Name through the resurrection power of God by the indwelling & overflowing presence of the Holy Spirit
-                    </p>
-                    
-                    <div class="vision-points">
-                        <div class="vision-point">
-                            <h3 class="vision-title">Awake!</h3>
-                            <p class="vision-description">be "actively waiting"</p>
-                        </div>
-                        
-                        <div class="vision-point">
-                            <h3 class="vision-title">Unite!</h3>
-                            <p class="vision-description">be one body under the Lordship of Jesus Christ</p>
-                        </div>
-                        
-                        <div class="vision-point">
-                            <h3 class="vision-title">Revive! (Resurrect!)</h3>
-                            <p class="vision-description">be the revival in the community of believers & also resurrect the community of non-believers wherever God has placed us</p>
+                    <div class="form-group">
+                        <label for="prayerLastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="prayerLastName" name="lastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prayerEmail">Email <span class="required">*</span></label>
+                        <input type="email" id="prayerEmail" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prayerPhone">Phone Number</label>
+                        <input type="tel" id="prayerPhone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prayerRequest">Prayer Request <span class="required">*</span></label>
+                        <textarea id="prayerRequest" name="prayerRequest" rows="8" placeholder="Please share your prayer request details..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Would you like this prayer request to be shared with the church? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="shareRequest" value="yes" required>
+                                <span>Yes, share with the church</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="shareRequest" value="no" required>
+                                <span>No, keep it private (prayer team only)</span>
+                            </label>
                         </div>
                     </div>
-                </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="followUp" value="yes">
+                            <span>I would like someone to follow up with me</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-button">Submit Prayer Request</button>
+                </form>
             </div>
         </div>
     </section>
@@ -189,6 +177,22 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Prayer Request form handling
+        document.getElementById('prayerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send this to a server
+            // For now, we'll just show a success message
+            alert('Thank you for sharing your prayer request. Our prayer team will be lifting you up in prayer.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
+
 
