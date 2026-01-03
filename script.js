@@ -162,11 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Handle hash navigation on page load
+// Handle hash navigation on page load (same logic as same-page scrolling)
 function scrollToHash() {
-    if (window.location.hash) {
-        setTimeout(() => {
-            const targetId = window.location.hash.substring(1);
+    const hash = window.location.hash || sessionStorage.getItem('scrollToHash');
+    if (hash) {
+        const targetId = hash.replace('#', '');
+        if (targetId) {
+            // Use the same scrolling logic as same-page links
             const target = document.querySelector('#' + targetId);
             if (target) {
                 const navbar = document.querySelector('.navbar');
@@ -178,35 +180,37 @@ function scrollToHash() {
                     top: Math.max(0, offsetTop),
                     behavior: 'smooth'
                 });
+                // Clear stored hash after successful scroll
+                if (sessionStorage.getItem('scrollToHash')) {
+                    sessionStorage.removeItem('scrollToHash');
+                }
             }
-        }, 500);
+        }
     }
 }
 
-// Handle cross-page navigation with hash (this is now handled in the smooth scrolling section above)
-
-// Run on page load
+// Run on page load - use same approach as "Plan a Visit" (#locations)
 document.addEventListener('DOMContentLoaded', () => {
     // Check if we have a stored hash from cross-page navigation
     const storedHash = sessionStorage.getItem('scrollToHash');
     if (storedHash) {
-        sessionStorage.removeItem('scrollToHash');
         window.location.hash = storedHash;
     }
-    // Delay to ensure page is fully rendered
+    
+    // Scroll to hash after a short delay (same timing as same-page links)
     setTimeout(() => {
         scrollToHash();
-    }, 300);
+    }, 100);
 });
 
 // Also run after page is fully loaded
 window.addEventListener('load', () => {
     setTimeout(() => {
         scrollToHash();
-    }, 500);
+    }, 200);
 });
 
-// Also handle hash changes
+// Handle hash changes (when hash changes on same page)
 window.addEventListener('hashchange', () => {
     setTimeout(() => {
         scrollToHash();
