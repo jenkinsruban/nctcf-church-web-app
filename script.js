@@ -119,34 +119,43 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            if (href && href.includes('#')) {
-                const hashIndex = href.indexOf('#');
-                const hash = href.substring(hashIndex);
-                const targetId = hash.substring(1);
-                
-                // If it's a cross-page link (contains .html), let browser navigate first
-                if (href.includes('.html') && hashIndex > 0) {
+            if (!href || !href.includes('#')) {
+                return; // Not a hash link, let browser handle it
+            }
+            
+            const hashIndex = href.indexOf('#');
+            const hash = href.substring(hashIndex);
+            const targetId = hash.substring(1);
+            
+            // Get current page name
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            
+            // Check if it's a cross-page link
+            if (href.includes('.html')) {
+                const linkPage = href.split('#')[0].replace('./', '');
+                // If linking to a different page, let browser navigate
+                if (linkPage !== currentPage && linkPage !== '') {
                     // Store hash for after page load
                     sessionStorage.setItem('scrollToHash', targetId);
-                    // Allow default navigation - don't prevent
-                    return true;
+                    // Don't prevent default - allow navigation
+                    return; // Exit early, let browser handle navigation
                 }
-                
-                // For same-page hash links, handle smooth scroll
-                if (hash !== '#' && targetId) {
-                    e.preventDefault();
-                    const target = document.querySelector('#' + targetId);
-                    if (target) {
-                        const navbar = document.querySelector('.navbar');
-                        const navbarHeight = navbar ? navbar.offsetHeight : 70;
-                        const banner = document.getElementById('announcementBanner');
-                        const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
-                        const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
-                        window.scrollTo({
-                            top: Math.max(0, offsetTop),
-                            behavior: 'smooth'
-                        });
-                    }
+            }
+            
+            // For same-page hash links, handle smooth scroll
+            if (hash !== '#' && targetId) {
+                e.preventDefault();
+                const target = document.querySelector('#' + targetId);
+                if (target) {
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 70;
+                    const banner = document.getElementById('announcementBanner');
+                    const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
+                    const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
+                    window.scrollTo({
+                        top: Math.max(0, offsetTop),
+                        behavior: 'smooth'
+                    });
                 }
             }
         });
