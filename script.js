@@ -54,16 +54,21 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Close mobile menu when clicking on dropdown menu items
-        document.querySelectorAll('.dropdown-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            });
-        });
-
         // Mobile Dropdown Toggle
         const dropdowns = document.querySelectorAll('.dropdown');
+
+        // Close mobile menu when clicking on dropdown menu items
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Allow navigation - don't prevent default
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                // Close all dropdowns
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            });
+        });
 
         dropdowns.forEach(dropdown => {
             const dropdownLink = dropdown.querySelector('.nav-link');
@@ -110,39 +115,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Smooth Scrolling for hash links
-document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (href && href.includes('#')) {
-            const hashIndex = href.indexOf('#');
-            const hash = href.substring(hashIndex);
-            const targetId = hash.substring(1);
-            
-            // If it's a cross-page link (contains .html), let browser navigate first
-            if (href.includes('.html') && hashIndex > 0) {
-                // Store hash for after page load
-                sessionStorage.setItem('scrollToHash', targetId);
-                // Allow default navigation
-                return true;
-            }
-            
-            // For same-page hash links, handle smooth scroll
-            if (hash !== '#' && targetId) {
-                e.preventDefault();
-                const target = document.querySelector('#' + targetId);
-                if (target) {
-                    const navbar = document.querySelector('.navbar');
-                    const navbarHeight = navbar ? navbar.offsetHeight : 70;
-                    const banner = document.getElementById('announcementBanner');
-                    const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
-                    const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
-                    window.scrollTo({
-                        top: Math.max(0, offsetTop),
-                        behavior: 'smooth'
-                    });
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href && href.includes('#')) {
+                const hashIndex = href.indexOf('#');
+                const hash = href.substring(hashIndex);
+                const targetId = hash.substring(1);
+                
+                // If it's a cross-page link (contains .html), let browser navigate first
+                if (href.includes('.html') && hashIndex > 0) {
+                    // Store hash for after page load
+                    sessionStorage.setItem('scrollToHash', targetId);
+                    // Allow default navigation - don't prevent
+                    return true;
+                }
+                
+                // For same-page hash links, handle smooth scroll
+                if (hash !== '#' && targetId) {
+                    e.preventDefault();
+                    const target = document.querySelector('#' + targetId);
+                    if (target) {
+                        const navbar = document.querySelector('.navbar');
+                        const navbarHeight = navbar ? navbar.offsetHeight : 70;
+                        const banner = document.getElementById('announcementBanner');
+                        const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
+                        const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
+                        window.scrollTo({
+                            top: Math.max(0, offsetTop),
+                            behavior: 'smooth'
+                        });
+                    }
                 }
             }
-        }
+        });
     });
 });
 
@@ -215,6 +222,7 @@ window.addEventListener('scroll', () => {
 
 // Close dropdowns when clicking outside
 document.addEventListener('click', (e) => {
+    const dropdowns = document.querySelectorAll('.dropdown');
     if (!e.target.closest('.dropdown')) {
         dropdowns.forEach(dropdown => {
             dropdown.classList.remove('active');
