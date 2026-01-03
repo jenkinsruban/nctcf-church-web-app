@@ -54,6 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // Close mobile menu when clicking on dropdown menu items
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
         // Mobile Dropdown Toggle
         const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -172,14 +180,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Delay to ensure page is fully rendered
     setTimeout(() => {
         scrollToHash();
-    }, 100);
+    }, 300);
 });
 
 // Also run after page is fully loaded
 window.addEventListener('load', () => {
     setTimeout(() => {
         scrollToHash();
-    }, 200);
+    }, 500);
+});
+
+// Also handle hash changes
+window.addEventListener('hashchange', () => {
+    setTimeout(() => {
+        scrollToHash();
+    }, 100);
 });
 
 // Navbar Scroll Effect
