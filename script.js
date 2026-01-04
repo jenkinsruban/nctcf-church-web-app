@@ -60,13 +60,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Close mobile menu when clicking on dropdown menu items
         document.querySelectorAll('.dropdown-menu a').forEach(link => {
             link.addEventListener('click', (e) => {
-                // Allow navigation - don't prevent default
+                // Allow navigation - don't prevent default or stop propagation
+                // Let the smooth scrolling handler also run
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
                 // Close all dropdowns
                 dropdowns.forEach(dropdown => {
                     dropdown.classList.remove('active');
                 });
+                // Don't stop propagation - let other handlers run
             });
         });
 
@@ -91,7 +93,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         
                         // Otherwise, toggle dropdown
                         e.preventDefault();
-                        e.stopPropagation();
+                        // Only stop propagation if not clicking on a dropdown menu item
+                        // This allows dropdown menu items to navigate
+                        if (!e.target.closest('.dropdown-menu')) {
+                            e.stopPropagation();
+                        }
                         // Close other dropdowns
                         dropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== dropdown) {
