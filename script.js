@@ -127,22 +127,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const hash = href.substring(hashIndex);
             const targetId = hash.substring(1);
             
-            // Get current page name
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            // Get current page name (handle both with and without leading slash)
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.split('/').pop() || 'index.html';
             
             // Check if it's a cross-page link
             if (href.includes('.html')) {
-                const linkPage = href.split('#')[0].replace('./', '');
+                // Extract the page name from href (handle relative paths)
+                let linkPage = href.split('#')[0];
+                // Remove leading ./ or / if present
+                linkPage = linkPage.replace(/^\.\//, '').replace(/^\//, '');
+                // Remove trailing / if present
+                linkPage = linkPage.replace(/\/$/, '');
+                
                 // If linking to a different page, let browser navigate
-                if (linkPage !== currentPage && linkPage !== '') {
+                if (linkPage && linkPage !== currentPage) {
                     // Store hash for after page load
                     sessionStorage.setItem('scrollToHash', targetId);
-                    // Don't prevent default - allow navigation
-                    return; // Exit early, let browser handle navigation
+                    // Explicitly don't prevent default - allow navigation
+                    // Don't do anything else - let the browser handle it completely
+                    return; // Exit early, let browser handle navigation naturally
                 }
             }
             
-            // For same-page hash links, handle smooth scroll
+            // If we get here, it's a same-page hash link (like #locations)
+            // Handle smooth scroll for same-page links only
             if (hash !== '#' && targetId) {
                 e.preventDefault();
                 const target = document.querySelector('#' + targetId);
