@@ -120,58 +120,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Smooth Scrolling for hash links
+// Simple navigation function that can be called directly
+function navigateToHash(href) {
+    if (!href || !href.includes('#')) {
+        return true; // Not a hash link, let browser handle it
+    }
+    
+    const hashIndex = href.indexOf('#');
+    const hash = href.substring(hashIndex);
+    const targetId = hash.substring(1);
+    
+    // Get current page name
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
+    
+    // Check if it's a cross-page link
+    if (href.includes('.html')) {
+        let linkPage = href.split('#')[0];
+        linkPage = linkPage.replace(/^\.\//, '').replace(/^\//, '').replace(/\/$/, '');
+        
+        // If linking to a different page, store hash and navigate
+        if (linkPage && linkPage !== currentPage) {
+            sessionStorage.setItem('scrollToHash', targetId);
+            window.location.href = href; // Navigate directly
+            return false; // Prevent default
+        }
+    }
+    
+    // Same-page hash link - handle smooth scroll
+    if (hash !== '#' && targetId) {
+        const target = document.querySelector('#' + targetId);
+        if (target) {
+            const navbar = document.querySelector('.navbar');
+            const navbarHeight = navbar ? navbar.offsetHeight : 70;
+            const banner = document.getElementById('announcementBanner');
+            const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
+            const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
+            window.scrollTo({
+                top: Math.max(0, offsetTop),
+                behavior: 'smooth'
+            });
+            return false; // Prevent default
+        }
+    }
+    
+    return true; // Allow default navigation
+}
+
+// Attach event listeners to hash links
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
-            if (!href || !href.includes('#')) {
-                return; // Not a hash link, let browser handle it
-            }
-            
-            const hashIndex = href.indexOf('#');
-            const hash = href.substring(hashIndex);
-            const targetId = hash.substring(1);
-            
-            // Get current page name (handle both with and without leading slash)
-            const currentPath = window.location.pathname;
-            const currentPage = currentPath.split('/').pop() || 'index.html';
-            
-            // Check if it's a cross-page link
-            if (href.includes('.html')) {
-                // Extract the page name from href (handle relative paths)
-                let linkPage = href.split('#')[0];
-                // Remove leading ./ or / if present
-                linkPage = linkPage.replace(/^\.\//, '').replace(/^\//, '');
-                // Remove trailing / if present
-                linkPage = linkPage.replace(/\/$/, '');
-                
-                // If linking to a different page, let browser navigate
-                if (linkPage && linkPage !== currentPage) {
-                    // Store hash for after page load
-                    sessionStorage.setItem('scrollToHash', targetId);
-                    // Explicitly don't prevent default - allow navigation
-                    // Don't do anything else - let the browser handle it completely
-                    return; // Exit early, let browser handle navigation naturally
-                }
-            }
-            
-            // If we get here, it's a same-page hash link (like #locations)
-            // Handle smooth scroll for same-page links only
-            if (hash !== '#' && targetId) {
+            if (!navigateToHash(href)) {
                 e.preventDefault();
-                const target = document.querySelector('#' + targetId);
-                if (target) {
-                    const navbar = document.querySelector('.navbar');
-                    const navbarHeight = navbar ? navbar.offsetHeight : 70;
-                    const banner = document.getElementById('announcementBanner');
-                    const bannerHeight = (banner && !banner.classList.contains('hidden')) ? banner.offsetHeight : 0;
-                    const offsetTop = target.offsetTop - navbarHeight - bannerHeight - 30;
-                    window.scrollTo({
-                        top: Math.max(0, offsetTop),
-                        behavior: 'smooth'
-                    });
-                }
             }
         });
     });
