@@ -22,10 +22,21 @@ if (bannerClose) {
 
 // Check if banner was previously closed
 document.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('bannerClosed') === 'true') {
-        announcementBanner.classList.add('hidden');
+    // Ensure banner element exists
+    if (announcementBanner) {
+        // Force banner to be visible (temporarily ignore localStorage for testing)
+        announcementBanner.classList.remove('hidden');
+        announcementBanner.style.transform = 'translateY(0)';
+        announcementBanner.style.display = 'block';
+        announcementBanner.style.visibility = 'visible';
+        announcementBanner.style.position = 'fixed';
+        announcementBanner.style.top = '0';
+        announcementBanner.style.left = '0';
+        announcementBanner.style.right = '0';
+        announcementBanner.style.width = '100%';
+        announcementBanner.style.zIndex = '1001';
+        updateBannerHeight();
     }
-    updateBannerHeight();
     
     // Update on window resize
     window.addEventListener('resize', updateBannerHeight);

@@ -37,38 +37,51 @@ body {
 
 /* Announcement Banner */
 .announcement-banner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: #e8e8e8;
-    border-top: 1px solid #666;
-    border-bottom: 2px solid #2d7a7a;
-    z-index: 1001;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    background: #e5e5e5 !important;
+    border-bottom: 1px solid #4db6ac !important;
+    z-index: 1001 !important;
     transition: transform 0.3s ease;
+    display: block !important;
+    visibility: visible !important;
+    min-height: 50px !important;
+    transform: translateY(0) !important;
 }
 
 .announcement-banner.hidden {
-    transform: translateY(-100%);
+    transform: translateY(-100%) !important;
 }
 
 .banner-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0.75rem 20px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: center;
     position: relative;
+    min-height: 40px;
+}
+
+.banner-content-box {
+    background: transparent !important;
+    padding: 0;
+    border-radius: 0;
+    display: inline-block !important;
+    visibility: visible !important;
 }
 
 .banner-text {
-    color: var(--primary-color);
+    color: #3f51b5;
     font-size: 0.95rem;
     font-weight: 500;
     text-align: center;
     margin: 0;
+    white-space: nowrap;
 }
 
 .banner-link {
@@ -89,24 +102,28 @@ body {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
+    background: transparent;
     border: none;
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: #3f51b5;
     cursor: pointer;
-    padding: 0;
-    width: 24px;
-    height: 24px;
+    padding: 0.25rem 0.5rem;
+    width: auto;
+    height: auto;
+    min-width: 32px;
+    min-height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition);
     line-height: 1;
+    border-radius: 4px;
 }
 
 .banner-close:hover {
-    color: var(--primary-color);
-    transform: translateY(-50%) scale(1.2);
+    background: rgba(63, 81, 181, 0.1);
+    color: #3f51b5;
+    transform: translateY(-50%);
 }
 
 /* Navigation */
@@ -252,16 +269,16 @@ body:has(.announcement-banner:not(.hidden)) .navbar {
 /* Hero Section */
 .hero {
     position: relative;
-    min-height: 85vh;
+    min-height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #ff8c42 0%, #ffb347 50%, #ff8c42 100%);
     background-image: url('hero-background.jpg');
-    background-size: cover;
-    background-position: center;
+    background-size: contain;
+    background-position: 10% center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     margin-top: 70px;
     text-align: center;
     color: var(--white);
