@@ -845,7 +845,7 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         text-align: left;
         transition: var(--transition);
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 1.5rem 0;
+        padding: 1.5rem 0 2rem 0;
         gap: 0;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
@@ -853,11 +853,13 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         z-index: 999;
         font-size: 1.1rem;
         box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
     }
 
     body:has(.announcement-banner:not(.hidden)) .nav-menu {
         top: calc(70px + var(--banner-height, 50px));
         max-height: calc(100vh - 70px - var(--banner-height, 50px));
+        padding-bottom: 2rem;
     }
 
     .nav-menu.active {
@@ -2133,8 +2135,18 @@ body:has(.announcement-banner:not(.hidden)) .location-hero {
     }
     
     .nav-menu {
+        top: 55px;
         font-size: 1.15rem;
-        padding: 1.5rem 0;
+        padding: 1.5rem 0 2rem 0;
+        max-height: calc(100vh - 55px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    body:has(.announcement-banner:not(.hidden)) .nav-menu {
+        top: calc(55px + var(--banner-height, 50px));
+        max-height: calc(100vh - 55px - var(--banner-height, 50px));
+        padding-bottom: 2rem;
     }
     
     .nav-link {
