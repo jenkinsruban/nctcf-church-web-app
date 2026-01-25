@@ -216,7 +216,7 @@ body:has(.announcement-banner:not(.hidden)) .navbar {
     }
     
     .nav-logo a {
-        font-size: 0.85rem;
+        font-size: 1.1rem;
         letter-spacing: 0.2px;
         white-space: normal;
         word-break: break-word;
@@ -232,7 +232,7 @@ body:has(.announcement-banner:not(.hidden)) .navbar {
     }
     
     .nav-logo a {
-        font-size: 0.65rem;
+        font-size: 0.95rem;
         white-space: normal;
         word-break: break-word;
         line-height: 1.2;
@@ -2192,7 +2192,7 @@ body:has(.announcement-banner:not(.hidden)) .location-hero {
     }
     
     .nav-logo a {
-        font-size: 0.65rem;
+        font-size: 0.95rem;
         max-width: none;
         overflow: visible;
         text-overflow: clip;
