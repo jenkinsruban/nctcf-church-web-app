@@ -209,15 +209,33 @@ body:has(.announcement-banner:not(.hidden)) .navbar {
 }
 
 @media (max-width: 768px) {
+    .nav-logo {
+        flex: 1;
+        min-width: 0;
+        overflow: visible;
+    }
+    
     .nav-logo a {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         letter-spacing: 0.2px;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
     }
 }
 
 @media (max-width: 480px) {
+    .nav-logo {
+        flex: 1;
+        min-width: 0;
+        overflow: visible;
+    }
+    
     .nav-logo a {
-        font-size: 0.75rem;
+        font-size: 0.65rem;
+        white-space: normal;
+        word-break: break-word;
+        line-height: 1.2;
     }
 }
 
@@ -1977,16 +1995,33 @@ body:has(.announcement-banner:not(.hidden)) .location-hero {
     }
     
     .nav-logo a {
-        font-size: 0.7rem;
-        max-width: 150px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        font-size: 0.65rem;
+        max-width: none;
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+        line-height: 1.2;
+        word-break: break-word;
+    }
+    
+    .nav-logo {
+        flex: 1;
+        min-width: 0;
+        overflow: visible;
     }
     
     .nav-container {
-        padding: 0 8px;
-        height: 55px;
+        padding: 0.5rem 8px;
+        min-height: 55px;
+        height: auto;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .nav-logo {
+        flex: 1 1 auto;
+        min-width: 0;
+        margin-right: 0.5rem;
     }
 }
 
