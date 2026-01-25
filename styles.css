@@ -845,7 +845,7 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         text-align: left;
         transition: var(--transition);
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 1.5rem 0 2rem 0;
+        padding: 1.5rem 0 3rem 0;
         gap: 0;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
@@ -854,25 +854,28 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         font-size: 1.1rem;
         box-sizing: border-box;
         -webkit-overflow-scrolling: touch;
+        margin: 0;
     }
 
     body:has(.announcement-banner:not(.hidden)) .nav-menu {
         top: calc(70px + var(--banner-height, 50px));
         max-height: calc(100vh - 70px - var(--banner-height, 50px));
-        padding-bottom: 2rem;
+        padding-bottom: 3rem;
     }
 
     .nav-menu.active {
         left: 0;
+        right: 0;
     }
 
     .nav-item {
         width: 100%;
         max-width: 100%;
         padding: 0;
+        margin: 0;
         border-bottom: 1px solid var(--border-color);
         box-sizing: border-box;
-        overflow: hidden;
+        overflow: visible;
     }
     
     .dropdown {
@@ -901,6 +904,10 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         cursor: pointer;
         user-select: none;
         box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        margin: 0;
     }
     
     .dropdown .nav-link {
@@ -920,8 +927,10 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         min-height: 56px;
         text-align: center;
         width: calc(100% - 3rem);
-        max-width: 100%;
+        max-width: calc(100vw - 3rem);
         box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .nav-link:hover,
@@ -945,6 +954,7 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         display: none;
         max-height: 0;
         overflow: hidden;
+        overflow-x: hidden;
         transition: max-height 0.3s ease, padding 0.3s ease;
         padding: 0;
         width: 100%;
@@ -993,6 +1003,10 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         max-width: 100%;
         box-sizing: border-box;
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+        margin: 0;
     }
 
     .hero-title {
@@ -2137,16 +2151,18 @@ body:has(.announcement-banner:not(.hidden)) .location-hero {
     .nav-menu {
         top: 55px;
         font-size: 1.15rem;
-        padding: 1.5rem 0 2rem 0;
+        padding: 1.5rem 0 3rem 0;
         max-height: calc(100vh - 55px);
         overflow-y: auto;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+        margin: 0;
     }
     
     body:has(.announcement-banner:not(.hidden)) .nav-menu {
         top: calc(55px + var(--banner-height, 50px));
         max-height: calc(100vh - 55px - var(--banner-height, 50px));
-        padding-bottom: 2rem;
+        padding-bottom: 3rem;
     }
     
     .nav-link {
