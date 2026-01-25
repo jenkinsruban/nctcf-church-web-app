@@ -317,7 +317,7 @@ body:has(.announcement-banner:not(.hidden)) .navbar {
     background: linear-gradient(135deg, #ff8c42 0%, #ffb347 50%, #ff8c42 100%);
     background-image: url('hero-background.jpg');
     background-size: cover;
-    background-position: center 20%;
+    background-position: center top;
     background-repeat: no-repeat;
     background-attachment: scroll;
     margin: 70px 0 0 0;
@@ -836,6 +836,13 @@ body:has(.announcement-banner:not(.hidden)) .hero {
     }
 }
 
+/* Desktop - ensure cross is fully visible */
+@media (min-width: 769px) {
+    .hero {
+        background-position: center top;
+    }
+}
+
 @media (max-width: 768px) {
     .banner-close {
         right: 10px;
@@ -848,6 +855,7 @@ body:has(.announcement-banner:not(.hidden)) .hero {
         min-height: 100vh;
         background-attachment: scroll;
         padding: 0 1rem;
+        background-position: center 20%;
     }
     
     body:has(.announcement-banner:not(.hidden)) .hero {
